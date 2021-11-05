@@ -42,3 +42,4 @@ was wrong (Might make right).
 ## Signatures: 
 - minhtp2 (Minh Phan)
 - jonahlt2 (Jonah Tjandra)
+- dvalen25 (David Valencia)
