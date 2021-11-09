@@ -3,7 +3,7 @@
 - <b>Members:</b> atran49, minhtp2, dvalen25, jonahlt2
 
 ## Leading Question
-What is the most popular website? What is the shortest path between two websites?
+How to best to rank the website based on relevance? What is the shortest path between two websites?
  
 ## Dataset Acquisition and Processing:
 <b>Dataset:</b>
@@ -24,20 +24,31 @@ Google programming contest, 2002
     - Each node should be represented as a unique integer ID
  
 <b> Error Handling </b>
-- ???
+- Make sure to handle empty lines when parsing.
+- Make sure to ignore non digit characters, because our data format is in node ID which is an integer.
+- Make sure to have only two distinct integers for each line in the data set.
+- Make sure to get rid of duplicate entries if there are any.
  
  
 ## Graph Algorithms:
- Your final project must implement at least two graph data algorithms as well as a graph traversal from the list of example goals or you must propose an algorithm or set of graph algorithms that represent an equivalent amount of coding development. Accordingly, your proposal should clearly state what algorithms you will complete by the project's end. When describing your choices, be sure to include the following: What are the inputs you expect each method to take in? What output are you expecting for each method? If there are multiple ways to implement an algorithm, what is your target big O or efficiency benchmark? For the more complex algorithms, be sure to include as part of the input any additional information you might need. For example, A* search requires a heuristic. If you choose to do A*, what are some possible heuristics you might use?
  
 1. Djikstra's Algorithm
-- Input: 2 websites (or 2 nodes).
+- Input: Adjacency List of the nodes.
 - Output: The shortest path between 2 websites.
-- ???
+- Runtime: O(mlogn) where m is the number edges and n is the number of nodes.
+- Space Complexity: O(n^2) where n is the number of nodes.
+
 2. PageRank
-- Input: Directed graph of websites and links to each other, alpha, dangling, max number of iterations.
-- Output: Output a set of websites (nodes), and their weights.
-- ???
+- Input: Adjacency Matrix of nodes representing adjacencies.
+- Output: A matrix of page rank values/weights of of the websites (nodes).
+- Runtime: O(Nk) where N is the dimension of the adjacency matrix and k is the number of iterations to reach convergence.
+- Space Complexity: O(N) where N is the dimesion of the adjacency matrix.
+
+3. Breadth First Search
+- Input: Adjacency List of the nodes.
+- Output: The path from one node to another node.
+- Runtime: O(V+E) where V is the number of vertices and E is the number of edges.
+- Space Complexity: O(V+E) where V is the number of vertices and E is the number of edges.
  
 ## Timeline:
 ### Week 1: <br>
