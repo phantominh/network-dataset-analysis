@@ -31,10 +31,10 @@ std::list<int> Graph::incidentVertexes(int v) {
 }
 
 void Graph::insertEdge(int v1, int v2) {
-    if (_adjacency_dict.find(v1) == _adjacency_dict.end() || _adjacency_dict.find(v2) == _adjacency_dict.end()) {
-        return;
-    }
     _adjacency_dict[v1].emplace_back(v2);
+    if (_adjacency_dict.find(v2) == _adjacency_dict.end()) {
+        _adjacency_dict[v2] = std::list<int>();
+    }
 }
 
 std::map<int, std::list<int>> Graph::getAdjacencyDict() {
