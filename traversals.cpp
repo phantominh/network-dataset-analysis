@@ -2,7 +2,7 @@
 
 Traversal::Traversal(){};
 
-Traversal::Traversal(std::unordered_map<int, std::vector<int> > graph) {
+Traversal::Traversal(std::map<int, std::list<int> > graph) {
     graph_ = graph;
 }
 
@@ -10,18 +10,29 @@ std::string Traversal::message() {
     return "Hello, World!";
 }
 
-bool Traversal::dfs(int curr, int node) {
-    if (curr == node) {
+bool Traversal::dfs(int curr, int destination, std::unordered_map<int, bool> visited) {
+    visited[curr] = true;
+    if (curr == destination) {
         return true;
     }
-    for (auto& neighbors : graph_[curr]) {
-        if (dfs(neighbors, node)) {
+    for (auto& neighbor : graph_[curr]) {
+        if (visited[neighbor]) continue;
+        if (dfs(neighbor, destination, visited)) {
             return true;
         }
     }
     return false;
 }
 
-std::vector<int> pathToNode(int curr, int node) {
-    return {1,2,3};
+std::vector<int> Traversal::pathToNode(int curr, int destination, std::unordered_map<int, bool> visited, std::vector<int>& path) {
+    visited[curr] = true;
+    path.push_back(curr);
+    if (curr == destination) {
+        return path;
+    }
+    for (auto& neighbor : graph_[curr]) {
+        if (visited[neighbor]) continue;
+        if (!pathToNode(neighbor, destination, visited, path).empty()) return path;
+    }
+    return {};
 }

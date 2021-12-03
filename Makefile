@@ -1,9 +1,18 @@
 
+run: main.o traversals.o parser.o graph.o
+	clang++ -Wall -Werror -std=c++1y main.o traversals.o parser.o graph.o -o run
+
 traversals: main.o traversals.o
 	clang++ -Wall -Werror -std=c++1y main.o traversals.o -o traversals
 
 test: traversals.o traversal_tests.o
 	clang++ -Wall -Werror -std=c++1y traversals.o traversals_test.o -o test
+
+graph.o: graph.cpp
+	clang++ -c -Wall -Werror -std=c++1y graph.cpp
+
+parser.o: parser.cpp
+	clang++ -c -Wall -Werror -std=c++1y parser.cpp
 
 traversal_tests.o: ./tests/traversals_test.cpp
 	clang++ -c -Wall -Werror -std=c++1y ./tests/traversals_test.cpp
