@@ -3,8 +3,8 @@
 #include <vector>
 
 int main() {
-    // Traversal obj = Traversal();
-    // std::cout<<obj.message()<<std::endl;
+    Traversal obj = Traversal();
+    std::cout<<obj.message()<<std::endl;
 
     std::ifstream file ("df_small.txt");
     
@@ -16,5 +16,4 @@ int main() {
     }
 
     return 0;
-
 }
