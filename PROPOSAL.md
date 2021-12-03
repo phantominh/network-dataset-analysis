@@ -32,24 +32,24 @@ Google programming contest, 2002
  
 ## Graph Algorithms:
  
-1. Djikstra's Algorithm
-- Input: Adjacency List of the nodes.
-- Output: The shortest path between 2 websites.
-- Runtime: O(mlogn) where m is the number edges and n is the number of nodes.
-- Space Complexity: O(n^2) where n is the number of nodes.
+1. PageRank Algorithm
+- Input: Adjacency List representing the graph OR the graph itself
+- Output: A matrix of page rank values/weights of of the websites
+- Runtime: O(k*n) where n is the number of nodes and k is the number of iterations to reach convergence
+- Space Complexity: O(n) where n is the number of nodes
 
-2. PageRank
-- Input: Adjacency Matrix of nodes representing adjacencies.
-- Output: A matrix of page rank values/weights of of the websites (nodes).
-- Runtime: O(Nk) where N is the dimension of the adjacency matrix and k is the number of iterations to reach convergence.
-- Space Complexity: O(N) where N is the dimesion of the adjacency matrix.
+2. Kosaraju's Algorithm
+- Input: Adjacency List representing the graph OR the graph itself
+- Output: Strongly connected components in a Graph
+- Runtime: O(m+n)
+- Space Complexity: O(n)
 
-3. Breadth First Search
-- Input: Adjacency List of the nodes.
-- Output: The path from one node to another node.
-- Runtime: O(V+E) where V is the number of vertices and E is the number of edges.
-- Space Complexity: O(V+E) where V is the number of vertices and E is the number of edges.
- 
+3. Depth First Search
+- Input: An Adjacency List representing the graph OR a graph itself
+- Output: The path from one node to another node OR whether a node can traverse to another
+- Runtime: O(m+n)
+- Space Complexity: O(m+n)
+
 ## Timeline:
 ### Week 1: <br>
 - Setup the repo environment (Makefile)
@@ -59,8 +59,8 @@ Google programming contest, 2002
 = Implement 1 kind of traversal (partially implemented)
 ### Week 2: <br>
 - Finish traversal
-- Implement Dijkstra’s algorithm
-- Unit Tests for traversal and Dijkstra
+- Implement Kosaraju’s algorithm
+- Unit Tests for traversal and Kosaraju
 ### Week 3: <br>
 - Implement PageRank algorithm (partially implemented or fully implemented)
 - Unit Tests for PageRank algorithm
