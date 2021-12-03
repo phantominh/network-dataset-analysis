@@ -2,7 +2,8 @@
 
 #include <vector>
 #include <list>
-#include <map>
+#include <unordered_map>
+#include <iostream>
 
 class Graph {
     public:
@@ -48,8 +49,8 @@ class Graph {
         void insertEdge(int v1, int v2);
 
         /** Adjacency dictionary getter */
-        std::map<int, std::list<int>> getAdjacencyDict();
+        std::unordered_map<int, std::list<int>> getAdjacencyDict();
 
     private:
-        std::map<int, std::list<int>> _adjacency_dict;
+        std::unordered_map<int, std::list<int>> _adjacency_dict;
 };

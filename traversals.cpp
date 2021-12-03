@@ -2,7 +2,7 @@
 
 Traversal::Traversal(){};
 
-Traversal::Traversal(std::map<int, std::list<int> > graph) {
+Traversal::Traversal(std::unordered_map<int, std::list<int> > graph) {
     graph_ = graph;
 }
 

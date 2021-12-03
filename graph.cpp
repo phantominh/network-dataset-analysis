@@ -55,6 +55,6 @@ void Graph::insertEdge(int v1, int v2) {
     }
 }
 
-std::map<int, std::list<int>> Graph::getAdjacencyDict() {
+std::unordered_map<int, std::list<int>> Graph::getAdjacencyDict() {
     return _adjacency_dict;
 }
