@@ -29,7 +29,15 @@ class Graph {
          * 
          * @param v
          */
-        std::list<int> incidentVertexes(int v);
+        std::list<int> adjacentVertexes(int v);
+
+        /**
+         * @brief Return whether 2 vertexes are adjacent
+         * 
+         * @param v1 
+         * @param v2
+         */
+        bool areAdjacent(int v1, int v2);
 
         /**
          * @brief Insert an edge between 2 vertexes

@@ -24,4 +24,4 @@ traversals.o: traversals.cpp traversals.h
 	clang++ -c -Wall -Werror -std=c++1y traversals.cpp
 
 clean:
-	rm -f traversals main.o traversals.o test traversals_test.o
+	rm -f run traversals main.o traversals.o test traversals_test.o

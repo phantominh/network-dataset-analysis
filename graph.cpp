@@ -26,8 +26,26 @@ void Graph::insertVertex(int v) {
     }
 }
 
-std::list<int> Graph::incidentVertexes(int v) {
+std::list<int> Graph::adjacentVertexes(int v) {
     return _adjacency_dict[v];
+}
+
+bool Graph::areAdjacent(int v1, int v2) {
+    if (_adjacency_dict[v1].size() < _adjacency_dict[v2].size()) {
+        for (auto i : _adjacency_dict[v1]) {
+            if (i == v2) {
+                return true;
+            }
+        }
+    } else {
+        for (auto i : _adjacency_dict[v2]) {
+            if (i == v1) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 void Graph::insertEdge(int v1, int v2) {
