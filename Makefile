@@ -1,6 +1,6 @@
 
-run: main.o traversals.o parser.o graph.o
-	clang++ -Wall -Werror -std=c++1y main.o traversals.o parser.o graph.o -o run
+run: main.o traversals.o parser.o graph.o pagerank.o
+	clang++ -Wall -Werror -std=c++1y main.o traversals.o parser.o graph.o pagerank.o -o run
 
 traversals: main.o traversals.o
 	clang++ -Wall -Werror -std=c++1y main.o traversals.o -o traversals
@@ -23,5 +23,8 @@ main.o: main.cpp
 traversals.o: traversals.cpp traversals.h
 	clang++ -c -Wall -Werror -std=c++1y traversals.cpp
 
+pagerank.o: pagerank.cpp pagerank.h
+	clang++ -c -Wall -Werror -std=c++1y pagerank.cpp
+
 clean:
-	rm -f run traversals main.o traversals.o test traversals_test.o
+	rm -f run traversals main.o traversals.o test traversals_test.o parse.o pagerank.o

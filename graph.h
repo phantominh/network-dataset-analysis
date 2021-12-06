@@ -26,11 +26,18 @@ class Graph {
         void insertVertex(int v);
 
         /**
-         * @brief Returns incident vertexes of a vertex
+         * @brief Returns OUTGOING adjacent vertexes of a vertex
          * 
          * @param v
          */
-        std::list<int> adjacentVertexes(int v);
+        std::list<int> outgoingAdjacentVertexes(int v);
+
+        /**
+         * @brief Returns INCOMING adjacent vertexes of a vertex
+         * 
+         * @param v
+         */
+        std::list<int> incomingAdjacentVertexes(int v);
 
         /**
          * @brief Return whether 2 vertexes are adjacent
@@ -38,6 +45,7 @@ class Graph {
          * @param v1 
          * @param v2
          */
+        // TODO: FIX THIS
         bool areAdjacent(int v1, int v2);
 
         /**
@@ -49,8 +57,12 @@ class Graph {
         void insertEdge(int v1, int v2);
 
         /** Adjacency dictionary getter */
-        std::unordered_map<int, std::list<int>> getAdjacencyDict();
+        std::unordered_map<int, std::list<int>> getOutgoingAdjacencyDict();
+
+        /** Incoming adjacency dictionary */
+        std::unordered_map<int, std::list<int>> getIncomingAdjacencyDict();
 
     private:
-        std::unordered_map<int, std::list<int>> _adjacency_dict;
+        std::unordered_map<int, std::list<int>> adjacency_dict_outgoing_;
+        std::unordered_map<int, std::list<int>> adjacency_dict_incoming_;
 };
