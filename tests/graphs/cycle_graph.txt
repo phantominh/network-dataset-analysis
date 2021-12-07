@@ -1,0 +1,10 @@
+# Directed graph (each unordered pair of nodes is saved once)
+# Nodes: 3 Edges: 3
+# FromNodeId	ToNodeId
+# 0 -> 1
+#  ^   |
+#   \  v
+#      2
+0	1
+1	2
+2	0
