@@ -8,7 +8,7 @@
 int main() {
     std::cout<<"start parsing..."<<std::endl;
     Parser parseObj = Parser();
-    // parseObj.parseData("data/pagerank_small.txt");
+    //parseObj.parseData("data/pagerank_small.txt");
 
     parseObj.parseData("web-Google.txt");
 
