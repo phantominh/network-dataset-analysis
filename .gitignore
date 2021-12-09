@@ -1,5 +1,12 @@
 # Custom configurations
-traversals
+main
+parser_test
+graph_test
+traversals_test
+pagerank_test
+kosaraju_test
+
+# Data
 web-Google.txt
 
 .vscode

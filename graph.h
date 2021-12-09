@@ -40,12 +40,11 @@ class Graph {
         std::list<int> incomingAdjacentVertexes(int v);
 
         /**
-         * @brief Return whether 2 vertexes are adjacent
+         * @brief Return whether v1 can go to v2
          * 
          * @param v1 
          * @param v2
          */
-        // TODO: FIX THIS
         bool areAdjacent(int v1, int v2);
 
         /**

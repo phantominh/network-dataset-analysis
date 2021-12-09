@@ -44,15 +44,15 @@ std::list<int> Graph::incomingAdjacentVertexes(int v) {
 }
 
 bool Graph::areAdjacent(int v1, int v2) {
-    // TODO: Fix this because this code is for UNDIRECTED GRAPH!!!
-    if (adjacency_dict_outgoing_[v1].size() < adjacency_dict_outgoing_[v2].size()) {
+    // Return whether v1 can go to v2
+    if (adjacency_dict_outgoing_[v1].size() < adjacency_dict_incoming_[v2].size()) {
         for (auto i : adjacency_dict_outgoing_[v1]) {
             if (i == v2) {
                 return true;
             }
         }
     } else {
-        for (auto i : adjacency_dict_outgoing_[v2]) {
+        for (auto i : adjacency_dict_incoming_[v2]) {
             if (i == v1) {
                 return true;
             }

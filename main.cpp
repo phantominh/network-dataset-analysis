@@ -8,9 +8,9 @@
 int main() {
     std::cout<<"start parsing..."<<std::endl;
     Parser parseObj = Parser();
-    //parseObj.parseData("data/pagerank_small.txt");
+    parseObj.parseData("data/pagerank_simple.txt");
 
-    parseObj.parseData("web-Google.txt");
+    // parseObj.parseData("web-Google.txt");
 
     std::cout<<"building graph..."<<std::endl;
     Graph myGraph = Graph(parseObj.data_);
@@ -43,9 +43,9 @@ int main() {
     PageRank p = PageRank(myGraph, 0.85, 2);
     p.rank();
     
-    // for (auto i : p.get_rank()) {
-    //     std::cout << "Node: " << i.first << ": " << i.second << std::endl;
-    // }
+    for (auto i : p.get_rank()) {
+        std::cout << "Node: " << i.first << ": " << i.second << std::endl;
+    }
 
     return 0;
 }
