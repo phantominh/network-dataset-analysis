@@ -22,13 +22,13 @@ main: main.o ${OBJS}
 
 # Build and run tests
 parser_test: parser_test.o ${OBJS}
-	${LD} parser_test.o parser.o ${LDFLAGS} -o parser_test
+	${LD} ${LDFLAGS} parser_test.o ${OBJS} -o parser_test
 
 parser_test.o: tests/parser_test.cpp tests/catch.hpp ${INCLUDES}
 	${CXX} ${CXXFLAGS} ./tests/parser_test.cpp
 
 graph_test: graph_test.o ${OBJS}
-	${LD} ${LDFLAGS} graph_test.o graph.o parser.o -o graph_test
+	${LD} ${LDFLAGS} graph_test.o ${OBJS} -o graph_test
 
 graph_test.o: tests/graph_test.cpp tests/catch.hpp ${INCLUDES}
 	${CXX} ${CXXFLAGS} ./tests/graph_test.cpp
