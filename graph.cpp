@@ -72,3 +72,7 @@ void Graph::insertEdge(int v1, int v2) {
 std::unordered_map<int, std::list<int>> Graph::getOutgoingAdjacencyDict() {
     return adjacency_dict_outgoing_;
 }
+
+std::unordered_map<int, std::list<int>> Graph::getIncomingAdjacencyDict() {
+    return adjacency_dict_incoming_;
+}
