@@ -3,6 +3,8 @@
 #include "graph.h"
 #include <vector>
 #include <set>
+#include <algorithm>
+#include <unordered_map>
 #include <stack>
 #include <list>
 #include <unordered_map>
@@ -10,10 +12,14 @@
 class Kosaraju {
     public: 
         //returns the strongly connected components of a graph
-        static std::vector<std::set<int>> getSCC(Graph graph);
+        Kosaraju(Graph graph);
+        std::vector<std::set<int>> getSCC();
 
     private:
-        static void buildStackDFS(int node, std::set<int>& visited, std::stack<int>& st, Graph graph);
-        static void buildStackDFS2(int node, std::set<int>& visited, std::set<int>& scc, Graph graph);
+        void buildStackDFS(int node, std::unordered_map<int, bool>& visited, std::stack<int>& st);
+        void buildStackDFS2(int node, std::unordered_map<int, bool>& visited, std::set<int>& scc);
+        Graph graph_;
+        std::unordered_map<int, std::list<int>> incomingList_;
+        std::unordered_map<int, std::list<int>> outgoingList_;
 
 };

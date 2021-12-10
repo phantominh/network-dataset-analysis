@@ -9,7 +9,7 @@
 int main() {
     std::cout<<"start parsing..."<<std::endl;
     Parser parseObj = Parser();
-    parseObj.parseData("data/pagerank_complex.txt");
+    parseObj.parseData("web-Google.txt");
 
     // parseObj.parseData("web-Google.txt");
 
@@ -52,7 +52,8 @@ int main() {
 
     
     std::cout << "Performing Kosaraju's Algorithm" << std::endl;
-    std::vector<std::set<int>> sccVec = Kosaraju::getSCC(myGraph);
+    Kosaraju k = Kosaraju(myGraph);
+    std::vector<std::set<int>> sccVec = k.getSCC();
     for (auto& scc : sccVec) {
         for (auto& node : scc) {
             std::cout<<node;
