@@ -12,3 +12,6 @@
 - Work on unit tests @dvalen45 @minhtp2 @jonahlt2
 
 ## Week 3 (Dec 5th - Dec 12th)
+- Clean and update Makefile to run tests @minhtp2 
+- Implement and test PageRank @minhtp2 @atran49
+- Implement and test Kosaraju's algorithm @jonahlt2 @dvalen45

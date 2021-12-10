@@ -1,27 +1,57 @@
+# Files
+SRC_FILES = $^
+TESTS_FILES = $(wildcard ./tests/*.cpp)
 
-run: main.o traversals.o parser.o graph.o
-	clang++ -Wall -Werror -std=c++1y main.o traversals.o parser.o graph.o -o run
+# Variables
+OBJS = traversals.o parser.o graph.o pagerank.o kosaraju.o
+TESTS = parser_test.o graph_test.o traversals_test.o kosaraju_test.o
+INCLUDES = parser.h graph.h traversals.h pagerank.h kosaraju.h
 
-traversals: main.o traversals.o
-	clang++ -Wall -Werror -std=c++1y main.o traversals.o -o traversals
+# Arguments
+CXX = clang++	
+CXXFLAGS = -std=c++1y -stdlib=libc++ -c -g -O0 -Wall -Wextra -pedantic
+LD = clang++	
+LDFLAGS = -std=c++1y -stdlib=libc++ -lc++abi -lm
 
-test: traversals.o traversal_tests.o
-	clang++ -Wall -Werror -std=c++1y traversals.o traversals_test.o -o test
+# Build objects and main
+main: main.o ${OBJS}
+	${LD} main.o ${OBJS} ${LDFLAGS} -o main
 
-graph.o: graph.cpp
-	clang++ -c -Wall -Werror -std=c++1y graph.cpp
+.cpp.o:
+	${CXX} ${CXXFLAGS} ${SRC_FILES}
 
-parser.o: parser.cpp
-	clang++ -c -Wall -Werror -std=c++1y parser.cpp
+# Build and run tests
+parser_test: parser_test.o ${OBJS}
+	${LD} parser_test.o parser.o ${LDFLAGS} -o parser_test
 
-traversal_tests.o: ./tests/traversals_test.cpp
-	clang++ -c -Wall -Werror -std=c++1y ./tests/traversals_test.cpp
+parser_test.o: tests/parser_test.cpp tests/catch.hpp ${INCLUDES}
+	${CXX} ${CXXFLAGS} ./tests/parser_test.cpp
 
-main.o: main.cpp 
-	clang++ -c -Wall -Werror -std=c++1y main.cpp
+graph_test: graph_test.o ${OBJS}
+	${LD} ${LDFLAGS} graph_test.o graph.o parser.o -o graph_test
 
-traversals.o: traversals.cpp traversals.h
-	clang++ -c -Wall -Werror -std=c++1y traversals.cpp
+graph_test.o: tests/graph_test.cpp tests/catch.hpp ${INCLUDES}
+	${CXX} ${CXXFLAGS} ./tests/graph_test.cpp
 
+traversals_test: traversals_test.o ${OBJS}
+	${LD} ${LDFLAGS} traversals_test.o ${OBJS} -o traversals_test
+
+traversals_test.o: tests/traversals_test.cpp tests/catch.hpp ${INCLUDES}
+	${CXX} ${CXXFLAGS} ./tests/traversals_test.cpp
+
+pagerank_test: pagerank_test.o ${OBJS}
+	${LD} ${LDFLAGS} pagerank_test.o ${OBJS} -o pagerank_test
+
+pagerank_test.o: tests/pagerank_test.cpp tests/catch.hpp ${INCLUDES}
+	${CXX} ${CXXFLAGS} ./tests/pagerank_test.cpp
+
+kosaraju_test: kosaraju_test.o ${OBJS}
+	${LD} ${LDFLAGS} kosaraju_test.o ${OBJS} -o kosaraju_test
+
+kosaraju_test.o: tests/kosaraju_test.cpp tests/catch.hpp ${INCLUDES}
+	${CXX} ${CXXFLAGS} ./tests/kosaraju_test.cpp
+
+# Clean run files in the directory
+EXECUTABLE = main parser_test graph_test traversals_test pagerank_test kosaraju_test
 clean:
-	rm -f run traversals main.o traversals.o test traversals_test.o
+	rm -f $(EXECUTABLE) *.o
