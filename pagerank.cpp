@@ -25,11 +25,12 @@ void PageRank::rank() {
         return;
 
     // TODO: Implement rank until convergence
+    // CONVERGENCE
     for (int i = 0; i < iteration_; i++) {
         double add = 0;
         std::unordered_map<int, double> old_rank(rank_);
 
-        for (auto iter : rank_) {
+        for (auto iter : rank_) { // O (N * summation of deg(v0 -> n))
             int node = iter.first;
             double new_rank = 0;
             for (auto incoming_node : g_.incomingAdjacentVertexes(node)) {
