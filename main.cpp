@@ -4,11 +4,12 @@
 #include "parser.h"
 #include "graph.h"
 #include "pagerank.h"
+#include "kosaraju.h"
 
 int main() {
     std::cout<<"start parsing..."<<std::endl;
     Parser parseObj = Parser();
-    parseObj.parseData("data/pagerank_simple.txt");
+    parseObj.parseData("data/pagerank_complex.txt");
 
     // parseObj.parseData("web-Google.txt");
 
@@ -38,6 +39,28 @@ int main() {
     // for(auto& i : path) {
     //     std::cout<<"path "<<": "<<i<<std::endl;
     // }
+    // std::cout<<"printing out the incoming adj list: "<<std::endl;
+    // for (auto& kV : myGraph.getIncomingAdjacencyDict()) {
+    //     std::cout<<"Node "<<kV.first<<" has the following neighbors: "<<std::endl;
+    //     for (auto& node : kV.second) {
+    //         std::cout<<node<<std::endl;
+    //     }
+    // }
+
+
+    // std::cout<<"printing out the outgoing adj list: "<<std::endl;
+
+    
+    std::cout << "Performing Kosaraju's Algorithm" << std::endl;
+    std::vector<std::set<int>> sccVec = Kosaraju::getSCC(myGraph);
+    for (auto& scc : sccVec) {
+        for (auto& node : scc) {
+            std::cout<<node;
+        }
+        std::cout<<"\n";
+    }
+
+    
 
     std::cout << "Page Ranking" << std::endl;
     PageRank p = PageRank(myGraph, 0.85, 2);
@@ -46,6 +69,7 @@ int main() {
     for (auto i : p.get_rank()) {
         std::cout << "Node: " << i.first << ": " << i.second << std::endl;
     }
+
 
     return 0;
 }
