@@ -64,8 +64,12 @@ bool Graph::areAdjacent(int v1, int v2) {
 
 void Graph::insertEdge(int v1, int v2) {
     adjacency_dict_outgoing_[v1].emplace_back(v2);
+    adjacency_dict_incoming_[v2].emplace_back(v1);
     if (adjacency_dict_outgoing_.find(v2) == adjacency_dict_outgoing_.end()) {
         adjacency_dict_outgoing_[v2] = std::list<int>();
+    }
+    if (adjacency_dict_incoming_.find(v1) == adjacency_dict_outgoing_.end()) {
+        adjacency_dict_incoming_[v1] = std::list<int>();
     }
 }
 

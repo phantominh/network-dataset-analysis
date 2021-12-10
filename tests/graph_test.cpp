@@ -18,13 +18,8 @@ std::vector<std::pair<int, int>> getPairs(string path) {
     return p.data_;
 }
 
-// TODO: Delete this after you complete at least 1 test case, else Makefile linker will break
-TEST_CASE("Foo") {
-    REQUIRE(1==1);
-}
-
 TEST_CASE("Constructor parses the data correctly from a given vector of edge pairs") {
-    // TODO: dvalen25
+
     std::vector<std::pair<int, int>> data = getPairs("tests/graphs/line_graph.txt");
     Graph g(data);
 
@@ -47,7 +42,6 @@ TEST_CASE("Constructor parses the data correctly from a given vector of edge pai
 }
 
 TEST_CASE("insertVertex already in graph") {
-    // // TODO: dvalen25
     std::vector<std::pair<int, int>> data = getPairs("tests/graphs/line_graph.txt");
     Graph g(data);
     std::unordered_map<int, std::list<int>> map = g.getOutgoingAdjacencyDict();
@@ -62,7 +56,6 @@ TEST_CASE("insertVertex already in graph") {
 }
 
 TEST_CASE("insertVertex empty graph") {
-    // TODO: dvalen25
     Graph g;
     g.insertVertex(0);
     std::unordered_map<int, std::list<int>> map = g.getOutgoingAdjacencyDict();
@@ -76,9 +69,8 @@ TEST_CASE("insertVertex empty graph") {
 }
 
 TEST_CASE("adjacentVertexes works correctly") {
-    // TODO: dvalen25
-    Graph g;
     std::vector<std::pair<int, int>> data = getPairs("tests/graphs/line_graph.txt");
+    Graph g(data);
 
     REQUIRE(std::list<int>({1}) == g.outgoingAdjacentVertexes(0));
     REQUIRE(std::list<int>({2}) == g.outgoingAdjacentVertexes(1));
@@ -95,18 +87,16 @@ TEST_CASE("adjacentVertexes works correctly") {
 }
 
 TEST_CASE("areAdjacent on 2 adjacent vertexes") {
-    // TODO: dvalen25
-    Graph g;
     std::vector<std::pair<int, int>> data = getPairs("tests/graphs/line_graph.txt");
+    Graph g(data);
 
     REQUIRE(g.areAdjacent(0, 1));
     REQUIRE(!g.areAdjacent(1, 0));
 }
 
 TEST_CASE("areAdjacent on 2 adjacent vertexes from and to") {
-    // TODO: dvalen25
-    Graph g;
     std::vector<std::pair<int, int>> data = getPairs("tests/graphs/doubly_connected_line_graph.txt");
+    Graph g(data);
 
     REQUIRE(g.areAdjacent(0, 1));
     REQUIRE(g.areAdjacent(1, 0));
@@ -115,23 +105,21 @@ TEST_CASE("areAdjacent on 2 adjacent vertexes from and to") {
 }
 
 TEST_CASE("areAdjacent on 1 vertex exist other doesn't") {
-    // TODO: dvalen25
-    Graph g;
     std::vector<std::pair<int, int>> data = getPairs("tests/graphs/line_graph.txt");
+    Graph g(data);
 
     REQUIRE(g.areAdjacent(3, 4));
     REQUIRE(!g.areAdjacent(4, 5));
 }
 
 TEST_CASE("areAdjacent on 2 NOT adjacent vertexes") {
-    Graph g;
     std::vector<std::pair<int, int>> data = getPairs("tests/graphs/line_graph.txt");
+    Graph g(data);
 
     REQUIRE(!g.areAdjacent(3, 0));
 }
 
 TEST_CASE("insertEdge works correctly") {
-    // TODO: minhtp2
     Graph g;
     g.insertEdge(1,2);
 
