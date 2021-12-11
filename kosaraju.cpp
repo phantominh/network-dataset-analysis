@@ -7,64 +7,80 @@ Kosaraju::Kosaraju(Graph graph) {
 }
 
 std::vector<std::set<int>> Kosaraju::getSCC() {
-    std::stack<int> st;
-    std::unordered_map<int, bool> visited;
+    std::stack<int>* st = new std::stack<int>();
+    std::unordered_map<int, bool>* visited = new std::unordered_map<int, bool>();
 
-    std::cout<<"Traversal0" <<std::endl;
     //first pass: go through each node and build a stack with decreasing finish times of dfs (last edge is at the top)
     for (auto& kV : outgoingList_) {
-        if (visited[kV.first]) {
+        if ((*visited)[kV.first]) {
             continue;
         }
         buildStackDFS(kV.first, visited, st);
     }
 
-    std::cout<<"stack size: "<<st.size()<<std::endl;
+    std::cout<<"stack size: "<<st->size()<<std::endl;
 
     //clear the visited unordered_map as we have finished our first pass throught the graph
-    visited.clear();
+    visited->clear();
 
     std::vector<std::set<int>> sccVec;
     //second pass: use the stack we have built to find the strongly connected components
-    while(!st.empty()) {
-        int node = st.top();
-        st.pop();
-        if (visited[node]) {
+    while(!st->empty()) {
+        int node = st->top();
+        st->pop();
+        if ((*visited)[node]) {
             continue;
         }
-        std::set<int> scc;
+        std::set<int>* scc = new std::set<int>();
         buildStackDFS2(node, visited, scc);
-        std::cout<<"scc size: "<<scc.size()<<std::endl;
-        sccVec.push_back(scc);
+        // std::cout<<"scc size: "<<scc->size()<<std::endl;
+        sccVec.push_back(*scc);
     }
 
     return sccVec;
 }
 
-void Kosaraju::buildStackDFS(int node, std::unordered_map<int, bool>& visited, std::stack<int>& st) {
-    visited[node] = true;
-    std::cout<<"Traversal1" <<std::endl;
-    std::list<int> neighbors = outgoingList_[node];
-    std::cout<<"Traversal2" <<std::endl;
-    for (auto& vertex : neighbors) {
-        if (visited[vertex]) {
-            continue;
+void Kosaraju::buildStackDFS(int node, std::unordered_map<int, bool>* visited, std::stack<int>* st) {
+    bool hasUnvisitedNeighbor = false;
+    std::stack<int>* recurSt = new std::stack<int>();
+    std::stack<int>* callSt = new std::stack<int>();
+    recurSt->push(node);
+    while(!recurSt->empty()) {
+        node = recurSt->top();
+        recurSt->pop();
+        (*visited)[node] = true;
+        std::list<int> neighbors = outgoingList_[node];
+        hasUnvisitedNeighbor = false;
+        for (auto& vertex : neighbors) {
+            hasUnvisitedNeighbor = true;
+            if (!(*visited)[vertex]) {
+                recurSt->push(vertex);
+            }
         }
-        buildStackDFS(vertex, visited, st);
+        if (!hasUnvisitedNeighbor) st->push(node);
+        else callSt->push(node);
     }
-    std::cout<<"Traversal3" <<std::endl;
-    st.push(node);
+    while(!callSt->empty()) {
+        st->push(callSt->top());
+        callSt->pop();
+    }
 }
 
-void Kosaraju::buildStackDFS2(int node, std::unordered_map<int, bool>& visited, std::set<int>& scc) {
-    visited[node] = true;
-    // std::cout<<"Traversal Completion: "<<visited.size()/875713<<"%"<<std::endl;
-    scc.insert(node);
-    std::list<int> neighbors = incomingList_[node];
-    for (auto& vertex : neighbors) {
-        if (visited[vertex]) {
-            continue;
+void Kosaraju::buildStackDFS2(int node, std::unordered_map<int, bool>* visited, std::set<int>* scc) {
+    std::stack<int>* recurSt = new std::stack<int>();
+    recurSt->push(node);
+    while(!recurSt->empty()) {
+        node = recurSt->top();
+        recurSt->pop();
+        (*visited)[node] = true;
+        // std::cout<<"Traversal Completion: "<<visited.size()/875713<<"%"<<std::endl;
+        scc->insert(node);
+        std::list<int> neighbors = incomingList_[node];
+        for (auto& vertex : neighbors) {
+            if (!(*visited)[vertex]) {
+                recurSt->push(vertex);
+            }
         }
-        buildStackDFS2(vertex, visited, scc);
     }
+
 }
