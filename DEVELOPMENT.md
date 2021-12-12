@@ -15,3 +15,5 @@
 - Clean and update Makefile to run tests @minhtp2 
 - Implement and test PageRank @minhtp2 @atran49
 - Implement and test Kosaraju's algorithm @jonahlt2 @dvalen45
+- Implement main arguments and output result to .txt file @minhtp2
+- Writeups for project and presentation @all

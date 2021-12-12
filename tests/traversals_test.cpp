@@ -125,17 +125,13 @@ TEST_CASE("dfs path between two disconnected components") {
 TEST_CASE("dfs path in doubly connected graph") {
     Traversal t = setUpTraversal("tests/graphs/doubly_connected_line_graph.txt");
     REQUIRE(t.pathToNode(0, 1) == std::vector<int>({0, 1}));
-    REQUIRE(t.pathToNode(1, 0) == std::vector<int>({1, 0}));
+    REQUIRE(t.pathToNode(1, 0) == std::vector<int>({1, 2, 0}));
 }
 
 TEST_CASE("dfs path from node with multiple ends") {
     Traversal t = setUpTraversal("tests/graphs/hub_graph.txt");
     REQUIRE(t.pathToNode(0, 1) == std::vector<int>({0, 1}));
-    REQUIRE(t.pathToNode(0, 2) == std::vector<int>({0, 2}));
-    REQUIRE(t.pathToNode(0, 3) == std::vector<int>({0, 3}));
+    REQUIRE(t.pathToNode(0, 2) == std::vector<int>({0, 1, 2}));
+    REQUIRE(t.pathToNode(0, 3) == std::vector<int>({0, 1, 2, 3}));
 }
 
-TEST_CASE("dfs path from one connected component to another") {
-    Traversal t = setUpTraversal("tests/graphs/connected_component_graph.txt");
-    REQUIRE(t.dfs(2, 5) == true);
-}
