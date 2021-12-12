@@ -84,3 +84,58 @@ TEST_CASE("dfs traversal from one connected component to another") {
     Traversal t = setUpTraversal("tests/graphs/connected_component_graph.txt");
     REQUIRE(t.dfs(2, 5) == true);
 }
+
+// I realized these tests might be better after proving the bool function worked, this one should give us the path so we will do the same tests
+TEST_CASE("dfs path to node in path") {
+    Traversal t = setUpTraversal("tests/graphs/line_graph.txt");
+    REQUIRE(t.pathToNode(1, 4) == std::vector<int>({1, 2, 3, 4}));
+}
+
+TEST_CASE("dfs path to node not in path") {
+    Traversal t = setUpTraversal("tests/graphs/line_graph.txt");
+    REQUIRE(t.pathToNode(3, 2) == std::vector<int>());
+    REQUIRE(t.pathToNode(4, 1) == std::vector<int>());
+}
+
+TEST_CASE("dfs path to node not in graph") {
+    Traversal t = setUpTraversal("tests/graphs/line_graph.txt");
+    REQUIRE(t.pathToNode(4, 5) == std::vector<int>());
+    REQUIRE(t.pathToNode(0, 100) == std::vector<int>());
+}
+
+TEST_CASE("dfs path from and to node not in graph") {
+    Traversal t = setUpTraversal("tests/graphs/line_graph.txt");
+    REQUIRE(t.pathToNode(6, 5) == std::vector<int>());
+    REQUIRE(t.pathToNode(50, 100) == std::vector<int>());
+}
+
+TEST_CASE("dfs path from and to the same node") {
+    Traversal t = setUpTraversal("tests/graphs/line_graph.txt");
+    REQUIRE(t.pathToNode(4, 4) == std::vector<int>({4}));
+    REQUIRE(t.pathToNode(0, 0) == std::vector<int>({0}));
+}
+
+TEST_CASE("dfs path between two disconnected components") {
+    Traversal t = setUpTraversal("tests/graphs/disconnected_graph.txt");
+    REQUIRE(t.pathToNode(0, 1) == std::vector<int>({0, 1}));
+    REQUIRE(t.pathToNode(0, 3) == std::vector<int>());
+    REQUIRE(t.pathToNode(1, 2) == std::vector<int>());
+}
+
+TEST_CASE("dfs path in doubly connected graph") {
+    Traversal t = setUpTraversal("tests/graphs/doubly_connected_line_graph.txt");
+    REQUIRE(t.pathToNode(0, 1) == std::vector<int>({0, 1}));
+    REQUIRE(t.pathToNode(1, 0) == std::vector<int>({1, 0}));
+}
+
+TEST_CASE("dfs path from node with multiple ends") {
+    Traversal t = setUpTraversal("tests/graphs/hub_graph.txt");
+    REQUIRE(t.pathToNode(0, 1) == std::vector<int>({0, 1}));
+    REQUIRE(t.pathToNode(0, 2) == std::vector<int>({0, 2}));
+    REQUIRE(t.pathToNode(0, 3) == std::vector<int>({0, 3}));
+}
+
+TEST_CASE("dfs path from one connected component to another") {
+    Traversal t = setUpTraversal("tests/graphs/connected_component_graph.txt");
+    REQUIRE(t.dfs(2, 5) == true);
+}
