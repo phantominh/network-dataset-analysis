@@ -50,3 +50,7 @@ All tests are inside ```tests``` folder, with each .cpp file represents a test f
 
 ## Results
 The output of the real dataset is inside ```results``` directory. This includes a run of kosaraju in the real dataset, and a run of pagerank until convergence.
+
+The result format is as follow:
+- ```kosaraju```: Pages in a connected component on a single row, different SSCs in different rows.
+- ```pagerank```: One page and its rank on a single row, each page on a separate row.
