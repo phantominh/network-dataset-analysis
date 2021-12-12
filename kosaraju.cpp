@@ -18,8 +18,6 @@ std::vector<std::set<int>> Kosaraju::getSCC() {
         buildStackDFS(kV.first, visited, st);
     }
 
-    std::cout<<"stack size: "<<st->size()<<std::endl;
-
     //clear the visited unordered_map as we have finished our first pass throught the graph
     visited->clear();
 

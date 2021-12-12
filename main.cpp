@@ -5,16 +5,20 @@
 #include "graph.h"
 #include "pagerank.h"
 #include "kosaraju.h"
+#include <chrono>
+using namespace std::chrono;
 
 int main() {
     std::cout<<"start parsing..."<<std::endl;
+    auto start = high_resolution_clock::now();
     Parser parseObj = Parser();
     parseObj.parseData("web-Google.txt");
-
     // parseObj.parseData("web-Google.txt");
-
     std::cout<<"building graph..."<<std::endl;
     Graph myGraph = Graph(parseObj.data_);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop - start);
+    std::cout<<"Parsing took: " <<duration.count()/1000<<"."<<duration.count()%1000<<"s"<<std::endl;
 
     // //neighbours of node 1
     // std::unordered_map<int, std::list<int>> myAdjList = myGraph.getOutgoingAdjacencyDict();
@@ -52,24 +56,30 @@ int main() {
 
     
     std::cout << "Performing Kosaraju's Algorithm" << std::endl;
+    start = high_resolution_clock::now();
     Kosaraju k = Kosaraju(myGraph);
     std::vector<std::set<int>> sccVec = k.getSCC();
-    for (auto& scc : sccVec) {
-        for (auto& node : scc) {
-            std::cout<<node;
-        }
-        std::cout<<"\n";
-    }
-
-    
+    // for (auto& scc : sccVec) {
+    //     for (auto& node : scc) {
+    //         std::cout<<node;
+    //     }
+    //     std::cout<<"\n";
+    // }
+    stop = high_resolution_clock::now();
+    duration = duration_cast<milliseconds>(stop - start);
+    std::cout<<"Kosaraju took: " <<duration.count()/1000<<"."<<duration.count()%1000<<"s"<<std::endl;
 
     std::cout << "Page Ranking" << std::endl;
+    start = high_resolution_clock::now();
     PageRank p = PageRank(myGraph, 0.85, 2);
     p.rank();
     
-    for (auto i : p.get_rank()) {
-        std::cout << "Node: " << i.first << ": " << i.second << std::endl;
-    }
+    // for (auto i : p.get_rank()) {
+    //     std::cout << "Node: " << i.first << ": " << i.second << std::endl;
+    // }
+    stop = high_resolution_clock::now();
+    duration = duration_cast<milliseconds>(stop - start);
+    std::cout<<"Page Rank took: " <<duration.count()/1000<<"."<<duration.count()%1000<<"s"<<std::endl;
 
 
     return 0;

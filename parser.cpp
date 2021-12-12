@@ -12,6 +12,9 @@ Parser::Parser() {}
 
 void Parser::parseData(string fileName) {
     std::ifstream file (fileName);
+    if(file.fail()){
+        std::cout<<"Could not find the file name"<<std::endl;
+    }
     int node1;
     int node2;
     while (file >> node1 >> node2) {   
