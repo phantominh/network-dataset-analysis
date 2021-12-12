@@ -27,6 +27,7 @@ void PageRank::rank() {
     // TODO: Implement rank until convergence
     // CONVERGENCE
     for (int i = 0; i < iteration_; i++) {
+        bool converged = true;
         double add = 0;
         std::unordered_map<int, double> old_rank(rank_);
 
@@ -53,7 +54,16 @@ void PageRank::rank() {
         for (auto iter : rank_) {
             int node = iter.first;
             rank_[node] += add;
+            if (fabs(rank_[node] - old_rank[node]) > 0.00001) {
+                converged = false;
+            }
         }
+        
+        //if the ranks converge, the process is finished;
+        // if (converged == true) {
+        //     break;
+        // }
+
     }
 
     ranked_ = true;
