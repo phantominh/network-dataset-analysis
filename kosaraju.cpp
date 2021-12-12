@@ -18,8 +18,6 @@ std::vector<std::set<int>> Kosaraju::getSCC() {
         buildStackDFS(kV.first, visited, st);
     }
 
-    std::cout<<"stack size: "<<st->size()<<std::endl;
-
     //clear the visited unordered_map as we have finished our first pass throught the graph
     visited->clear();
 
@@ -37,6 +35,7 @@ std::vector<std::set<int>> Kosaraju::getSCC() {
         sccVec.push_back(*scc);
     }
 
+    scc_ = sccVec;
     return sccVec;
 }
 
@@ -83,4 +82,18 @@ void Kosaraju::buildStackDFS2(int node, std::unordered_map<int, bool>* visited, 
         }
     }
 
+}
+
+void Kosaraju::write_to_file(std::string output_file) {
+    std::ofstream output_stream;
+    output_stream.open(output_file);
+
+    for (auto i : scc_) {
+        for (auto j : i) {
+            output_stream << j << " ";
+        }
+        output_stream << std::endl;
+    }
+
+    output_stream.close();
 }
