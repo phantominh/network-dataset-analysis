@@ -3,7 +3,7 @@
 - <b>Members:</b> atran49, minhtp2, dvalen25, jonahlt2
 
 ## Leading Question
-How to best to rank the website based on relevance? What is the shortest path between two websites?
+What is the best website based on relevance? Which websites are strongly connected to each other?
  
 ## Dataset Acquisition and Processing:
 <b>Dataset:</b>
@@ -35,7 +35,7 @@ Google programming contest, 2002
 1. PageRank Algorithm
 - Input: Adjacency List representing the graph OR the graph itself
 - Output: A matrix of page rank values/weights of of the websites
-- Runtime: O(k*n) where n is the number of nodes and k is the number of iterations to reach convergence
+- Runtime: O(k*(m+n)) where k is the number of iterations to reach convergence
 - Space Complexity: O(n) where n is the number of nodes
 
 2. Kosaraju's Algorithm
