@@ -1,3 +1,6 @@
+# Results
+./results/*.txt
+
 # Custom configurations
 main
 parser_test
