@@ -19,6 +19,8 @@ class Graph {
          */
         Graph(std::vector<std::pair<int, int>> data);
 
+        Graph& operator=(const Graph& other);
+
         /**
          * @brief Inserts a new vertex into the graph
          * @param v Vertex key
@@ -62,6 +64,7 @@ class Graph {
         std::unordered_map<int, std::list<int>> getIncomingAdjacencyDict();
 
     private:
+        void copy(const Graph& other);
         std::unordered_map<int, std::list<int>> adjacency_dict_outgoing_;
         std::unordered_map<int, std::list<int>> adjacency_dict_incoming_;
 };

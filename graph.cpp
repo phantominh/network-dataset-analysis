@@ -5,8 +5,7 @@ Graph::Graph() {
 }
 
 Graph::Graph(const Graph& other) {
-    adjacency_dict_outgoing_ = other.adjacency_dict_outgoing_;
-    adjacency_dict_incoming_ = other.adjacency_dict_incoming_;
+    copy(other);
 }
 
 Graph::Graph(std::vector<std::pair<int, int>> data) {
@@ -27,6 +26,14 @@ Graph::Graph(std::vector<std::pair<int, int>> data) {
             adjacency_dict_incoming_[v1] = std::list<int>();
         }
     }
+}
+
+Graph& Graph::operator=(const Graph& other) {
+    if (&other != this) {
+        copy(other);
+    }
+    
+    return *this;
 }
 
 void Graph::insertVertex(int v) {
@@ -79,4 +86,10 @@ std::unordered_map<int, std::list<int>> Graph::getOutgoingAdjacencyDict() {
 
 std::unordered_map<int, std::list<int>> Graph::getIncomingAdjacencyDict() {
     return adjacency_dict_incoming_;
+}
+
+// Private
+void Graph::copy(const Graph& other) {
+    adjacency_dict_outgoing_ = other.adjacency_dict_outgoing_;
+    adjacency_dict_incoming_ = other.adjacency_dict_incoming_;
 }
