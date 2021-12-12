@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     else if (algorithm == "pagerank") {
         std::cout << "Page Ranking" << std::endl;
         start = high_resolution_clock::now();
-        PageRank p = PageRank(myGraph, 0.85, 1);
+        PageRank p = PageRank(myGraph, 0.85, 100); // TODO: Change this to modify pagerank number of iteration
         p.rank();
         stop = high_resolution_clock::now();
         duration = duration_cast<milliseconds>(stop - start);
