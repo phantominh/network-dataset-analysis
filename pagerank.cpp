@@ -59,10 +59,10 @@ void PageRank::rank() {
             }
         }
         
-        //if the ranks converge, the process is finished;
-        // if (converged == true) {
-        //     break;
-        // }
+        // if the ranks converge, the process is finished;
+        if (converged == true) {
+            break;
+        }
 
     }
 
@@ -71,4 +71,21 @@ void PageRank::rank() {
 
 std::unordered_map<int, double> PageRank::get_rank() {
     return rank_;
+}
+
+/**
+ * @brief Output pagerank result into an output file
+ * 
+ * @param output_file 
+ */
+void PageRank::write_to_file(std::string output_file) {
+    if (!ranked_) {
+        rank();
+    }
+    std::ofstream output_stream;
+    output_stream.open(output_file);
+    for (auto i : rank_) {
+        output_stream << i.first << " " << i.second << std::endl; 
+    }
+    output_stream.close();
 }
