@@ -1,6 +1,10 @@
 # CS 225 Final Project
 Authors: Minh Phan, Jonah Tjandra, David Sanchez, Tuan Tran
 
+Presentation Video: https://illinois.zoom.us/rec/share/3lX-ok6AJjuyrCIXFd57yfJHyZLqwqxDt2jeDl9cL2MktI17FZ4sCL9bHIy1E61U.YTioMSLn9FVjZKxH
+
+Presentation Slides: https://docs.google.com/presentation/d/1-go89R-BO-eE7wFrVblPWyui9DKQeveDnhikbAw1qeg/edit#slide=id.p
+
 Summary: With a network dataset of hyperlinks from a website to another, we analyze the website rankings based on relevance and find the strongly connected website clusters.
 
 ## Dataset
